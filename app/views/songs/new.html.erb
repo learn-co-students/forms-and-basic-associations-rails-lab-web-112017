@@ -3,9 +3,21 @@
 <%= form_for @song  do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <br />
+  <br/>
+
+  <%= f.label :artist_name %>
+  <%= f.text_field :artist_name %>
+  <br/>
+
+
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  <br/>
+
+  <%= f.fields_for :notes do |note| %>
+
+    <%= note.label :content%>
+    <%= note.text_field :content, id: "song_notes_#{note.index + 1}", placeholder: "Note Content"%><br>
+  <% end %>
 
   <%= f.submit %>
 <% end %>
-
-
