@@ -17,6 +17,8 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to @song
     else
+      # flash[:error] = @song.errors.full_messages
+      # redirect_to new_song_path
       render :new
     end
   end
@@ -47,7 +49,7 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title)
+    params.require(:song).permit(:title, :artist_name, :genre_id, note_contents:[])
   end
-end
 
+end
